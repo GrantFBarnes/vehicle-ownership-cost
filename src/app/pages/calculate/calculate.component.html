@@ -5,7 +5,100 @@
 
   <div class="row center mb-3">
     <div class="col-12">
-      <p>Coming Soon</p>
+      <p>General Information</p>
     </div>
+  </div>
+  <div class="row center mb-3">
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">Years Owned</span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="years_owned"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">
+          Miles Per &nbsp;
+          <select
+            class="form-select form-select-sm"
+            (ngModelChange)="modelChange()"
+            [(ngModel)]="miles_time"
+          >
+            <option value="year">Year</option>
+            <option value="month">Month</option>
+            <option value="week">Week</option>
+          </select>
+        </span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="miles_value"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">Gallon of Fuel ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="gallon_fuel_cost"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row center mb-3">
+    <div class="col-12">
+      <p>Vehicle Information</p>
+    </div>
+  </div>
+  <div class="row center mb-3">
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">Buy Price ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="buy_price"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">Sell Price ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="sell_price"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text">MPG</span>
+        <input
+          type="number"
+          class="form-control"
+          (ngModelChange)="modelChange()"
+          [(ngModel)]="mpg"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row center mb-3">
+    <p>Total Cost: {{ total_cost | currency }}</p>
+    <p>Fuel Cost: {{ total_fuel_cost | currency }}</p>
+    <p>Depreciation Cost: {{ total_depreciation_cost | currency }}</p>
   </div>
 </div>
