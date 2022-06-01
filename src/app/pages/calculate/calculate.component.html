@@ -9,48 +9,47 @@
     </div>
   </div>
   <div class="row center mb-3">
-    <div class="col-12 col-xl-6 mb-2">
+    <div class="col-12 col-lg-4 col-md-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">Years Owned</span>
+        <span class="input-group-text field-label">Years Owned</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
+          (change)="modelChange()"
           [(ngModel)]="years_owned"
         />
       </div>
     </div>
-    <div class="col-12 col-xl-6 mb-2">
+    <div class="col-12 col-lg-4 col-md-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">
-          Miles Per &nbsp;
-          <select
-            class="form-select form-select-sm"
-            (ngModelChange)="modelChange()"
-            [(ngModel)]="miles_time"
-          >
-            <option value="year">Year</option>
-            <option value="month">Month</option>
-            <option value="week">Week</option>
-          </select>
-        </span>
+        <span class="input-group-text field-label">Gallon of Fuel ($)</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
-          [(ngModel)]="miles_value"
+          (change)="modelChange()"
+          [(ngModel)]="gallon_fuel_cost"
         />
       </div>
     </div>
     <div class="col-12 col-xl-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">Gallon of Fuel ($)</span>
+        <span class="input-group-text field-label">Miles</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
-          [(ngModel)]="gallon_fuel_cost"
+          (change)="modelChange()"
+          [(ngModel)]="miles_value"
         />
+        <span class="input-group-text">Per</span>
+        <select
+          class="form-select"
+          (change)="modelChange()"
+          [(ngModel)]="miles_time"
+        >
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+          <option value="week">Week</option>
+        </select>
       </div>
     </div>
   </div>
@@ -61,44 +60,177 @@
     </div>
   </div>
   <div class="row center mb-3">
-    <div class="col-12 col-xl-6 mb-2">
+    <div class="col-12 col-lg-4 col-md-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">Buy Price ($)</span>
+        <span class="input-group-text field-label">Buy Price ($)</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
+          (change)="modelChange()"
           [(ngModel)]="buy_price"
         />
       </div>
     </div>
-    <div class="col-12 col-xl-6 mb-2">
+    <div class="col-12 col-lg-4 col-md-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">Sell Price ($)</span>
+        <span class="input-group-text field-label">Sell Price ($)</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
+          (change)="modelChange()"
           [(ngModel)]="sell_price"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-lg-4 col-md-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text field-label">MPG</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="mpg"
         />
       </div>
     </div>
     <div class="col-12 col-xl-6 mb-2">
       <div class="input-group">
-        <span class="input-group-text">MPG</span>
+        <span class="input-group-text field-label">Insurance ($)</span>
         <input
           type="number"
           class="form-control"
-          (ngModelChange)="modelChange()"
-          [(ngModel)]="mpg"
+          (change)="modelChange()"
+          [(ngModel)]="insurance_cost"
+        />
+        <span class="input-group-text">Per</span>
+        <select
+          class="form-select"
+          (change)="modelChange()"
+          [(ngModel)]="insurance_time"
+        >
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text field-label">Registration ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="registration_cost"
+        />
+        <span class="input-group-text">Per</span>
+        <select
+          class="form-select"
+          (change)="modelChange()"
+          [(ngModel)]="registration_time"
+        >
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text field-label">Oil Change ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="oil_change_cost"
+        />
+        <span class="input-group-text">Per (Miles)</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="oil_change_miles"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-xl-6 mb-2">
+      <div class="input-group">
+        <span class="input-group-text field-label">Tires ($)</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="tire_cost"
+        />
+        <span class="input-group-text">Per (Miles)</span>
+        <input
+          type="number"
+          class="form-control"
+          (change)="modelChange()"
+          [(ngModel)]="tire_miles"
         />
       </div>
     </div>
   </div>
 
   <div class="row center mb-3">
-    <p>Total Cost: {{ total_cost | currency }}</p>
-    <p>Fuel Cost: {{ total_fuel_cost | currency }}</p>
-    <p>Depreciation Cost: {{ total_depreciation_cost | currency }}</p>
+    <div class="col-12">
+      <table class="table table-sm table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Total Cost ({{ years_owned }} Years)</th>
+            <th>Cost/Month ({{ years_owned * 12 }} Months)</th>
+            <th>Cost/Mile ({{ total_miles }} Miles)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-primary">
+            <td>Total</td>
+            <td>{{ total_cost | currency }}</td>
+            <td>{{ total_cost / (years_owned * 12) | currency }}</td>
+            <td>{{ total_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Fuel</td>
+            <td>{{ total_fuel_cost | currency }}</td>
+            <td>{{ total_fuel_cost / (years_owned * 12) | currency }}</td>
+            <td>{{ total_fuel_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Depreciation</td>
+            <td>{{ total_depreciation_cost | currency }}</td>
+            <td>
+              {{ total_depreciation_cost / (years_owned * 12) | currency }}
+            </td>
+            <td>{{ total_depreciation_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Insurance</td>
+            <td>{{ total_insurance_cost | currency }}</td>
+            <td>{{ total_insurance_cost / (years_owned * 12) | currency }}</td>
+            <td>{{ total_insurance_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Registration</td>
+            <td>{{ total_registration_cost | currency }}</td>
+            <td>
+              {{ total_registration_cost / (years_owned * 12) | currency }}
+            </td>
+            <td>{{ total_registration_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Oil Changes</td>
+            <td>{{ total_oil_change_cost | currency }}</td>
+            <td>{{ total_oil_change_cost / (years_owned * 12) | currency }}</td>
+            <td>{{ total_oil_change_cost / total_miles | currency }}</td>
+          </tr>
+          <tr>
+            <td>Tires</td>
+            <td>{{ total_tire_cost | currency }}</td>
+            <td>{{ total_tire_cost / (years_owned * 12) | currency }}</td>
+            <td>{{ total_tire_cost / total_miles | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
