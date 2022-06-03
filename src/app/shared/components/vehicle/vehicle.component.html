@@ -1,0 +1,262 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Buy Price ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="buy_price"
+        (ngModelChange)="calculateCosts()"
+      />
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Sell Price ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="sell_price"
+        (ngModelChange)="calculateCosts()"
+      />
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">MPG</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="mpg"
+        (ngModelChange)="calculateCosts()"
+      />
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Insurance ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="insurance_cost"
+        (ngModelChange)="calculateCosts()"
+      />
+      <span class="input-group-text">Per</span>
+      <select
+        class="form-select"
+        [(ngModel)]="insurance_time"
+        (ngModelChange)="calculateCosts()"
+      >
+        <option value="year">Year</option>
+        <option value="month">Month</option>
+      </select>
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Registration ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="registration_cost"
+        (ngModelChange)="calculateCosts()"
+      />
+      <span class="input-group-text">Per</span>
+      <select
+        class="form-select"
+        [(ngModel)]="registration_time"
+        (ngModelChange)="calculateCosts()"
+      >
+        <option value="year">Year</option>
+        <option value="month">Month</option>
+      </select>
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Oil Change ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="oil_change_cost"
+        (ngModelChange)="calculateCosts()"
+      />
+      <span class="input-group-text">Per (Miles)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="oil_change_miles"
+        (ngModelChange)="calculateCosts()"
+      />
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text field-label">Tires ($)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="tire_cost"
+        (ngModelChange)="calculateCosts()"
+      />
+      <span class="input-group-text">Per (Miles)</span>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="tire_miles"
+        (ngModelChange)="calculateCosts()"
+      />
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Cost of</th>
+          <th>
+            <div class="input-group">
+              <select class="form-select" [(ngModel)]="cost_per">
+                <option value="total">Total</option>
+                <option value="year">Per Year</option>
+                <option value="month">Per Month</option>
+                <option value="day">Per Day</option>
+                <option value="mile">Per Mile</option>
+              </select>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-primary">
+          <td>Everything</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Fuel</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_fuel_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_fuel_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_fuel_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_fuel_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_fuel_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Depreciation</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_depreciation_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_depreciation_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_depreciation_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_depreciation_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_depreciation_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Insurance</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_insurance_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_insurance_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_insurance_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_insurance_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_insurance_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Registration</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_registration_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_registration_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_registration_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_registration_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_registration_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Oil Changes</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_oil_change_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_oil_change_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_oil_change_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_oil_change_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_oil_change_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td>Tires</td>
+          <ng-container [ngSwitch]="cost_per">
+            <td *ngSwitchCase="'year'">
+              {{ total_tire_cost / years_owned | currency }}
+            </td>
+            <td *ngSwitchCase="'month'">
+              {{ total_tire_cost / (years_owned * 12) | currency }}
+            </td>
+            <td *ngSwitchCase="'day'">
+              {{ total_tire_cost / (years_owned * 365) | currency }}
+            </td>
+            <td *ngSwitchCase="'mile'">
+              {{ total_tire_cost / total_miles | currency }}
+            </td>
+            <td *ngSwitchDefault>
+              {{ total_tire_cost | currency }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
