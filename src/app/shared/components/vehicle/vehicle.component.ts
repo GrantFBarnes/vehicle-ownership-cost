@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-vehicle',
@@ -6,10 +6,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./vehicle.component.css'],
 })
 export class VehicleComponent implements OnInit {
+  @Output() removeVehicleEvent = new EventEmitter<number>();
+
+  @Input() id: number = 0;
+  @Input() vehicle_count: number = 0;
+  @Input() cost_per: string = 'month';
   @Input() years_owned: number = 5;
   @Input() gallon_fuel_cost: number = 4;
   @Input() miles_value: number = 10000;
   @Input() miles_time: string = 'year';
+
+  name: string = '';
 
   buy_price: number = 25000;
   sell_price: number = 10000;
@@ -33,10 +40,12 @@ export class VehicleComponent implements OnInit {
 
   total_cost: number = 0;
 
-  cost_per: string = 'month';
-
   calculateCosts(): void {
     switch (this.miles_time) {
+      case 'total':
+        this.total_miles = this.miles_value;
+        break;
+
       case 'year':
         this.total_miles = this.miles_value * this.years_owned;
         break;
@@ -47,6 +56,10 @@ export class VehicleComponent implements OnInit {
 
       case 'week':
         this.total_miles = this.miles_value * this.years_owned * 52;
+        break;
+
+      case 'day':
+        this.total_miles = this.miles_value * this.years_owned * 365;
         break;
 
       default:
@@ -73,6 +86,7 @@ export class VehicleComponent implements OnInit {
         break;
 
       default:
+        this.total_insurance_cost = 0;
         break;
     }
 
@@ -88,6 +102,7 @@ export class VehicleComponent implements OnInit {
         break;
 
       default:
+        this.total_registration_cost = 0;
         break;
     }
 
@@ -108,5 +123,9 @@ export class VehicleComponent implements OnInit {
 
   ngOnChanges(): void {
     this.calculateCosts();
+  }
+
+  removeVehicle(): void {
+    this.removeVehicleEvent.emit(this.id);
   }
 }

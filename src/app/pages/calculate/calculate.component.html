@@ -11,6 +11,16 @@
       <div class="card">
         <div class="card-body">
           <div class="input-group mb-2">
+            <span class="input-group-text field-label">View Cost</span>
+            <select class="form-select" [(ngModel)]="cost_per">
+              <option value="total">In Total</option>
+              <option value="year">Per Year</option>
+              <option value="month">Per Month</option>
+              <option value="day">Per Day</option>
+              <option value="mile">Per Mile</option>
+            </select>
+          </div>
+          <div class="input-group mb-2">
             <span class="input-group-text field-label">Years Owned</span>
             <input
               type="number"
@@ -33,11 +43,12 @@
               class="form-control"
               [(ngModel)]="miles_value"
             />
-            <span class="input-group-text">Per</span>
             <select class="form-select" [(ngModel)]="miles_time">
-              <option value="year">Year</option>
-              <option value="month">Month</option>
-              <option value="week">Week</option>
+              <option value="total">In Total</option>
+              <option value="year">Per Year</option>
+              <option value="month">Per Month</option>
+              <option value="week">Per Week</option>
+              <option value="day">Per Day</option>
             </select>
           </div>
         </div>
@@ -52,6 +63,10 @@
     <ng-container *ngFor="let vehicle of vehicles">
       <div class="col-12 col-lg-6 mb-2">
         <app-vehicle
+          (removeVehicleEvent)="removeVehicle($event)"
+          [id]="vehicle"
+          [vehicle_count]="vehicles.size"
+          [cost_per]="cost_per"
           [years_owned]="years_owned"
           [gallon_fuel_cost]="gallon_fuel_cost"
           [miles_value]="miles_value"
@@ -59,7 +74,7 @@
         ></app-vehicle>
       </div>
     </ng-container>
-    <div class="col-12 col-lg-6 mb-2">
+    <div *ngIf="vehicles.size < max_vehicles" class="col-12 col-lg-6 mb-2">
       <app-add-vehicle (addVehicleEvent)="addVehicle()"></app-add-vehicle>
     </div>
   </div>

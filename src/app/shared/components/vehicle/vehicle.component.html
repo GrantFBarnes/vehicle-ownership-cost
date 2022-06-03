@@ -1,6 +1,10 @@
 <div class="card mb-3">
   <div class="card-body">
     <div class="input-group mb-2">
+      <span class="input-group-text field-label">Name</span>
+      <input type="text" class="form-control" [(ngModel)]="name" />
+    </div>
+    <div class="input-group mb-2">
       <span class="input-group-text field-label">Buy Price ($)</span>
       <input
         type="number"
@@ -35,14 +39,13 @@
         [(ngModel)]="insurance_cost"
         (ngModelChange)="calculateCosts()"
       />
-      <span class="input-group-text">Per</span>
       <select
         class="form-select"
         [(ngModel)]="insurance_time"
         (ngModelChange)="calculateCosts()"
       >
-        <option value="year">Year</option>
-        <option value="month">Month</option>
+        <option value="year">Per Year</option>
+        <option value="month">Per Month</option>
       </select>
     </div>
     <div class="input-group mb-2">
@@ -53,14 +56,13 @@
         [(ngModel)]="registration_cost"
         (ngModelChange)="calculateCosts()"
       />
-      <span class="input-group-text">Per</span>
       <select
         class="form-select"
         [(ngModel)]="registration_time"
         (ngModelChange)="calculateCosts()"
       >
-        <option value="year">Year</option>
-        <option value="month">Month</option>
+        <option value="year">Per Year</option>
+        <option value="month">Per Month</option>
       </select>
     </div>
     <div class="input-group mb-2">
@@ -101,18 +103,9 @@
     <table class="table table-sm table-striped table-hover">
       <thead>
         <tr>
-          <th>Cost of</th>
-          <th>
-            <div class="input-group">
-              <select class="form-select" [(ngModel)]="cost_per">
-                <option value="total">Total</option>
-                <option value="year">Per Year</option>
-                <option value="month">Per Month</option>
-                <option value="day">Per Day</option>
-                <option value="mile">Per Mile</option>
-              </select>
-            </div>
-          </th>
+          <th>Category</th>
+          <th *ngIf="cost_per == 'total'">Total Cost</th>
+          <th *ngIf="cost_per != 'total'">Cost/{{ cost_per }}</th>
         </tr>
       </thead>
       <tbody>
@@ -258,5 +251,13 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div
+    *ngIf="vehicle_count > 1"
+    class="card-footer text-danger clickable"
+    (click)="removeVehicle()"
+  >
+    Remove Vehicle &nbsp;
+    <i class="bi bi-trash"></i>
   </div>
 </div>

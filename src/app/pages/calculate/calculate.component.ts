@@ -6,20 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calculate.component.css'],
 })
 export class CalculateComponent implements OnInit {
+  cost_per: string = 'month';
   years_owned: number = 5;
   gallon_fuel_cost: number = 4;
-  miles_value: number = 10000;
-  miles_time: string = 'year';
+  miles_value: number = 50000;
+  miles_time: string = 'total';
 
-  vehicles: number[] = [0];
+  vehicles: Set<number> = new Set([0]);
+  max_vehicles: number = 6;
+  last_id: number = 0;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   addVehicle(): void {
-    if (this.vehicles.length < 10) {
-      this.vehicles.push(this.vehicles.length);
+    if (this.vehicles.size < this.max_vehicles) {
+      this.last_id += 1;
+      this.vehicles.add(this.last_id);
+    }
+  }
+
+  removeVehicle(id: number): void {
+    if (this.vehicles.size > 1) {
+      this.vehicles.delete(id);
     }
   }
 }
