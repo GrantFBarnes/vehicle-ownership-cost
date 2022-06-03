@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CalculateComponent } from './pages/calculate/calculate.component';
 import { VehicleComponent } from './shared/components/vehicle/vehicle.component';
+import { AddVehicleComponent } from './shared/components/add-vehicle/add-vehicle.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
     HomeComponent,
     CalculateComponent,
     VehicleComponent,
+    AddVehicleComponent,
     PageNotFoundComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],

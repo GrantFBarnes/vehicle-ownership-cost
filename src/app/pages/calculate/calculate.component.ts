@@ -11,7 +11,15 @@ export class CalculateComponent implements OnInit {
   miles_value: number = 10000;
   miles_time: string = 'year';
 
+  vehicles: number[] = [0];
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  addVehicle(): void {
+    if (this.vehicles.length < 10) {
+      this.vehicles.push(this.vehicles.length);
+    }
+  }
 }

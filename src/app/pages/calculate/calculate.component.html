@@ -49,13 +49,18 @@
     <div class="col-12">
       <p>Vehicle Information</p>
     </div>
-    <div class="col-12">
-      <app-vehicle
-        [years_owned]="years_owned"
-        [gallon_fuel_cost]="gallon_fuel_cost"
-        [miles_value]="miles_value"
-        [miles_time]="miles_time"
-      ></app-vehicle>
+    <ng-container *ngFor="let vehicle of vehicles">
+      <div class="col-12 col-lg-6 mb-2">
+        <app-vehicle
+          [years_owned]="years_owned"
+          [gallon_fuel_cost]="gallon_fuel_cost"
+          [miles_value]="miles_value"
+          [miles_time]="miles_time"
+        ></app-vehicle>
+      </div>
+    </ng-container>
+    <div class="col-12 col-lg-6 mb-2">
+      <app-add-vehicle (addVehicleEvent)="addVehicle()"></app-add-vehicle>
     </div>
   </div>
 </div>
