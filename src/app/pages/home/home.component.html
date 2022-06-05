@@ -5,11 +5,99 @@
 
   <div class="row center mb-3">
     <div class="col-12">
+      <h3>Instructions</h3>
+    </div>
+  </div>
+  <div class="row center mb-3">
+    <div class="col-12">
       <p>
-        This site can be used to estimate the monthly and total cost of owning a
-        vehicle based on values you provide. To begin, navigate to the
+        The purpose of this site is to estimate the costs of owning a vehicle.
+        You provide values of a previously owned vehicle or predictive values of
+        a potential future vehicle. Based on your input, final costs will be
+        given. Descriptions for each input can be found below. You are able to
+        add multiple vehicles for comparison purposes. To begin, navigate to the
         <a href="/voc/calculate">calculate</a> page.
       </p>
+    </div>
+  </div>
+
+  <div class="row center mb-3">
+    <div class="col-12">
+      <h3>Input Descriptions</h3>
+    </div>
+  </div>
+  <div class="row center mb-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <p>
+            The General Information section is where the values that apply to
+            all vehicles are provided.
+          </p>
+          <div class="accordion">
+            <div
+              *ngFor="let field of general_info | keyvalue: sortMethod"
+              class="accordion-item"
+            >
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#accordion-id-' + field.key"
+                >
+                  {{ field.value["name"] }}
+                </button>
+              </h2>
+              <div
+                [attr.id]="'accordion-id-' + field.key"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  {{ field.value["description"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row center mb-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <p>
+            The Vehicle Information section is where the values that apply to
+            only a specific vehicle are provided.
+          </p>
+          <div class="accordion">
+            <div
+              *ngFor="let field of vehicle_info | keyvalue: sortMethod"
+              class="accordion-item"
+            >
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#accordion-id-' + field.key"
+                >
+                  {{ field.value["name"] }}
+                </button>
+              </h2>
+              <div
+                [attr.id]="'accordion-id-' + field.key"
+                class="accordion-collapse collapse"
+              >
+                <div class="accordion-body">
+                  {{ field.value["description"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
