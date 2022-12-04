@@ -106,5 +106,7 @@
       }
     }
   },
-  "defaultProject": "vehicle-ownership-cost"
+  "cli": {
+    "analytics": false
+  }
 }
